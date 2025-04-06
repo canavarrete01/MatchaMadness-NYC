@@ -15,13 +15,13 @@ function App() {
       <div className="main-container">
         {/* Navigation Bar */}
         <nav className="navbar">
-          <div className="logo">matcha finder</div>
+          <div className="logo">Matcha NYC</div>
           <div className="nav-links">
             <a href="#map">MAP</a>
             <a href="#rankings">RANKINGS</a>
             <a href="#about">ABOUT</a>
           </div>
-          <div className="favorites-icon">❤️</div>
+          <div className="favorites-icon">🍵</div>
         </nav>
 
         {/* Hero Section */}
