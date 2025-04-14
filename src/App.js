@@ -21,7 +21,7 @@ function App() {
             <a href="#rankings">RANKINGS</a>
             <a href="#about">ABOUT</a>
           </div>
-          <div className="favorites-icon">🍵</div>
+          <div className="favorites-icon">🍵</div> 
         </nav>
 
         {/* Hero Section */}
@@ -29,7 +29,7 @@ function App() {
           <div className="hero-text">
             <h1>DISCOVER<br />MATCHA<br />SPOTS</h1>
             <p>Find the best matcha cafes in Manhattan with our curated map and rating system</p>
-            <button className="explore-button">EXPLORE ALL CAFES</button>
+            {/* <button className="explore-button">EXPLORE ALL CAFES</button> */}
           </div>
           <div className="hero-map">
             <MatchaMap />
