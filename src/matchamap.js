@@ -1,22 +1,50 @@
-require('dotenv').config();
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import './App.css';
 
+// Adjust so that when they click on borugh it changes the center of the map and the zoom level
+const boroughCenters = {
+  'All': {
+    center: { lat: 40.727691, lng: -73.995083 },
+    zoom: 12
+  },
+  'Manhattan': {
+    center: { lat: 40.727691, lng: -73.995083},
+    zoom: 12
+  },
+  'Brooklyn': {
+    center: { lat: 40.6982, lng: -73.9442 },
+    zoom: 12
+  },
+  'Queens': {
+    center: { lat: 40.7482, lng: -73.8570 },
+    zoom: 11.75
+  },
+  'Bronx': {
+    center: { lat: 40.8448, lng: -73.8648 },
+    zoom: 12
+  },
+  'Staten Island': {
+    center: { lat: 40.5795, lng: -74.1502 },
+    zoom: 11
+  }
+};
 
 const MatchaMap = () => {
+
   const [selectedCafe, setSelectedCafe] = useState(null);
   const [matchaCafes, setMatchaCafes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedBorough, setSelectedBorough] = useState('All');
   const [filteredCafes, setFilteredCafes] = useState([]);
+  const [mapCenter, setMapCenter] = useState(boroughCenters['All'].center);
+  const [mapZoom, setMapZoom] = useState(boroughCenters['All'].zoom);
+
+  console.log("Google Maps API Key:", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
   
-  // Manhattan coordinates
-  const mapCenter = {
-    lat: 40.727691,
-    lng: -73.995083
-  };
-  
+
+    
   const mapStyles = {
     height: "100%",
     width: "100%",
@@ -38,19 +66,23 @@ const MatchaMap = () => {
         
         // Transform data to match our component's format
         const formattedCafes = data.map(cafe => ({
-          id: cafe._id,
-          place_id: cafe.place_id,
-          name: cafe.name,
-          position: {
-            lat: cafe.location.lat,
-            lng: cafe.location.lng
-          },
-          rating: cafe.rating,
-          address: cafe.formatted_address,
-          borough: cafe.borough,
-          reviews: cafe.reviews || [],
-          website: cafe.website,
-          phone: cafe.formatted_phone_number
+            id: cafe._id,
+            place_id: cafe.place_id,
+            name: cafe.name,
+            address: cafe.formatted_address,
+            location: {
+              lat: cafe.location.lat,
+              lng: cafe.location.lng
+            },
+            borough: cafe.borough,
+            rating: cafe.rating,
+            user_ratings_total: cafe.user_ratings_total,
+            reviews: cafe.reviews || [],
+            website: cafe.website,
+            formatted_phone_number: cafe.formatted_phone_number,
+            price_level: cafe.price_level,
+            opening_hours: cafe.opening_hours,
+            last_updated: cafe.last_updated
         }));
         
         setMatchaCafes(formattedCafes);
@@ -67,12 +99,17 @@ const MatchaMap = () => {
   
   // Filter cafes by borough
   useEffect(() => {
-    if (selectedBorough === 'All') {
-      setFilteredCafes(matchaCafes);
-    } else {
-      setFilteredCafes(matchaCafes.filter(cafe => cafe.borough === selectedBorough));
-    }
-  }, [selectedBorough, matchaCafes]);
+  const { center, zoom } = boroughCenters[selectedBorough];
+  setMapCenter(center);
+  setMapZoom(zoom);
+
+  if (selectedBorough === 'All') {
+    setFilteredCafes(matchaCafes);
+  } else {
+    setFilteredCafes(matchaCafes.filter(cafe => cafe.borough === selectedBorough));
+  }
+}, [selectedBorough, matchaCafes]);
+
   
   // Fetch details and reviews when a marker is clicked
   const handleMarkerClick = async (cafe) => {
@@ -113,8 +150,10 @@ const MatchaMap = () => {
   if (error) return <div>Error: {error}</div>;
   
   return (
-    <div className="matcha-map-container">
+   
+    <div className="hero-map">
       {/* Borough filter */}
+      {/* Change css for this, change drop down menu and font and color */}
       <div className="borough-filter">
         <label htmlFor="borough-select">Filter by Borough: </label>
         <select 
@@ -130,14 +169,16 @@ const MatchaMap = () => {
           <option value="Staten Island">Staten Island</option>
         </select>
       </div>
-      
+     
       <LoadScript
-        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
-      >
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+        onError={() => console.error("Google Maps failed to load")}
+        loadingElement={<div>Loading Google Maps...</div>}>
+      
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={13}
           center={mapCenter}
+          zoom={mapZoom}
           options={{
             styles: [
               {
@@ -148,12 +189,12 @@ const MatchaMap = () => {
               {
                 featureType: "water",
                 elementType: "geometry",
-                stylers: [{ color: "#b9d7e3" }]
+                stylers: [{ color: "#77A8C8" }]
               },
               {
                 featureType: "poi.park",
                 elementType: "geometry",
-                stylers: [{ color: "#a0b173" }]
+                stylers: [{ color: "#B0D5AB" }]
               }
             ]
           }}
@@ -161,7 +202,7 @@ const MatchaMap = () => {
           {filteredCafes.map(cafe => (
             <Marker
               key={cafe.id}
-              position={cafe.position}
+              position={cafe.location}
               icon={{
                 url: "/matcha-pin.svg", // Custom pin icon
                 scaledSize: { width: 32, height: 40 }
@@ -172,28 +213,18 @@ const MatchaMap = () => {
           
           {selectedCafe && (
             <InfoWindow
-              position={selectedCafe.position}
+              position={selectedCafe.location}
               onCloseClick={() => setSelectedCafe(null)}
             >
+
               <div className="info-window">
                 <h3>{selectedCafe.name}</h3>
                 <div className="rating">★ {selectedCafe.rating}</div>
                 <p>{selectedCafe.address}</p>
                 <p>Borough: {selectedCafe.borough}</p>
-                {selectedCafe.phone && <p>{selectedCafe.phone}</p>}
                 {selectedCafe.website && (
                   <p><a href={selectedCafe.website} target="_blank" rel="noopener noreferrer">Website</a></p>
                 )}
-                <div className="reviews-preview">
-                  {selectedCafe.reviews && selectedCafe.reviews.length > 0 ? (
-                    <>
-                      <p>"{selectedCafe.reviews[0].text.substring(0, 100)}..."</p>
-                      <a href={`#cafe-${selectedCafe.id}`}>Read all {selectedCafe.reviews.length} reviews</a>
-                    </>
-                  ) : (
-                    <p>Loading reviews...</p>
-                  )}
-                </div>
               </div>
             </InfoWindow>
           )}
@@ -205,128 +236,3 @@ const MatchaMap = () => {
 
 export default MatchaMap;
 
-
-// Previous Draft, Test Code
-// import React, { useState, useEffect } from 'react';
-// import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-
-// const MatchaMap = () => {
-//   const [selectedCafe, setSelectedCafe] = useState(null);
-//   const [matchaCafes, setMatchaCafes] = useState([]);
-  
-//   // Manhattan coordinates
-//   const mapCenter = {
-//     lat: 40.727691,
-//     lng: -73.995083
-//   };
-  
-//   const mapStyles = {
-//     height: "100%",
-//     width: "100%",
-//     borderRadius: "20px"
-//   };
-  
-//   // Sample data for matcha cafes in Manhattan
-//   // In a real implementation, this would come from your database or API
-//   useEffect(() => {
-//     // Simulating data fetch
-//     const cafes = [
-//       {
-//         id: 1,
-//         name: "Cha Cha Matcha",
-//         position: { lat: 40.7216, lng: -73.9989 },
-//         rating: 4.5,
-//         address: "373 Broome St, New York, NY 10013"
-//       },
-//       {
-//         id: 2,
-//         name: "Matcha Cafe Wabi",
-//         position: { lat: 40.7281, lng: -73.9849 },
-//         rating: 4.7,
-//         address: "233 E 4th St, New York, NY 10009"
-//       },
-//       {
-//         id: 3,
-//         name: "Chalait",
-//         position: { lat: 40.7354, lng: -74.0082 },
-//         rating: 4.4,
-//         address: "1216 Broadway, New York, NY 10001"
-//       },
-//       {
-//         id: 4,
-//         name: "MATCHAFUL",
-//         position: { lat: 40.7224, lng: -73.9981 },
-//         rating: 4.6,
-//         address: "158 Mott St, New York, NY 10013"
-//       },
-//       {
-//         id: 5,
-//         name: "Matcha Bar",
-//         position: { lat: 40.7188, lng: -73.9571 },
-//         rating: 4.3,
-//         address: "93 N 6th St, Brooklyn, NY 11249"
-//       }
-//     ];
-    
-//     setMatchaCafes(cafes);
-//   }, []);
-  
-//   return (
-//     <LoadScript
-//       googleMapsApiKey="value" // Replace 
-//     >
-//       <GoogleMap
-//         mapContainerStyle={mapStyles}
-//         zoom={13}
-//         center={mapCenter}
-//         options={{
-//           styles: [
-//             {
-//               featureType: "all",
-//               elementType: "geometry",
-//               stylers: [{ color: "#f5f5dc" }]
-//             },
-//             {
-//               featureType: "water",
-//               elementType: "geometry",
-//               stylers: [{ color: "#b9d7e3" }]
-//             },
-//             {
-//               featureType: "poi.park",
-//               elementType: "geometry",
-//               stylers: [{ color: "#a0b173" }]
-//             }
-//           ]
-//         }}
-//       >
-//         {matchaCafes.map(cafe => (
-//           <Marker
-//             key={cafe.id}
-//             position={cafe.position}
-//             icon={{
-//               url: "/matcha-pin.svg", // Custom pin icon (create this SVG file)
-//               scaledSize: { width: 32, height: 40 }
-//             }}
-//             onClick={() => setSelectedCafe(cafe)}
-//           />
-//         ))}
-        
-//         {selectedCafe && (
-//           <InfoWindow
-//             position={selectedCafe.position}
-//             onCloseClick={() => setSelectedCafe(null)}
-//           >
-//             <div className="info-window">
-//               <h3>{selectedCafe.name}</h3>
-//               <div className="rating">★ {selectedCafe.rating}</div>
-//               <p>{selectedCafe.address}</p>
-//               <a href={`#cafe-${selectedCafe.id}`}>View Details</a>
-//             </div>
-//           </InfoWindow>
-//         )}
-//       </GoogleMap>
-//     </LoadScript>
-//   );
-// };
-
-// export default MatchaMap;

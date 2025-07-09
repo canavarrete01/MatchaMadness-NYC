@@ -3,12 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap');
 
 :root {
+  /* backgrounds */
   --pink-bg: #EFD0CA;
   --green-bg: #a8bc87;
-  --cream-bg: #f6efc7;
+
+  /* texts */
   --offwhite-bg: #f8f6e8;
   --black: #000000;
 
+  /* accents */
   --light-green: #a8bc87;
   --light-green-2: #D1F5BE;
   --dark-green: #718355;
@@ -16,9 +19,17 @@
   --neon-green: #9CDE9F;
   --matcha: #B5C99A;
   --grey: #C1BCAC;
-  --accent-black: #342E37
+  --accent-black: #342E37;
+  --hero-green:  #043923;
+
+  /* new colors */
+  /* --cream-bg: #FFFBF2; */
+  /* --cream-bg: #f6efc7; */
+  --cream-bg: #f8f6ec;
+  
 }
 
+/* Defaults */
 * {
   margin: 0;
   padding: 0;
@@ -27,9 +38,19 @@
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background-color: var(--pink-bg);
+  background-color: var(--cream-bg);
 }
 
+footer {
+  margin-top: -20px;
+  padding: 20px;
+  background-color: #799300;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 24px 24px 0 0;
+}
+
+/* Main Components --------------- */
 .App {
   display: flex;
   flex-direction: column;
@@ -37,26 +58,7 @@ body {
   text-align: center;
 }
 
-/* Main container */
-.main-container {
-  /* max-width: 90%;  */
-  margin: 20px 100px;
-  padding: 20px;
-  background-color: var(--green-bg);
-  border-radius: 24px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-/* Style CSS */
-.dots {
-  width: 8px;
-  height: 8px;
-  background-color: var(--pink-bg);
-  border-radius: 50%;
-}
-
-/* Navigation */
+/* Navigation Bar CSS*/
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -67,15 +69,9 @@ body {
   margin-bottom: 20px;
 }
 
-.logo {
-  font-family: 'DM Sans', cursive;
-  font-size: 24px;
-  font-weight: 700;
-  font-style: italic;
-}
-
 .nav-links {
   display: flex;
+  align-items: right;
   gap: 30px;
 }
 
@@ -86,41 +82,92 @@ body {
   font-size: 14px;
 }
 
+.nav-links a:hover {
+  transform: scale(1.08);
+  text-shadow: 0 0 8px var(--pink-bg), 0 0 16px var(--pink-bg);
+  transition: transform 0.15s, text-shadow 0.15s;
+}
+ .title-logo {
+   font-family: 'DM Sans', cursive;
+   font-size: 20px;
+   font-weight: 600;
+   /* font-style: italic; */
+ }
 
-/* Hero Section */
+/* Footer CSS */
+.footer-links {
+  text-decoration: none;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 1%;
+  color: var(--cream-bg);
+}
+
+
+/* Hero Section CSS --------------- */
 .hero-section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .hero-text {
   flex: 1;
-  padding: 40px 0;
+  padding: 18px 0;
 }
 
 .hero-text h1 {
   font-family: 'Archivo Black', sans-serif;
   font-size: 54px;
   line-height: 1;
-  margin-bottom: 20px;
-  color: var(--black);
+  /* margin-bottom: 10px; */
+  color: var(--hero-green);
 }
 
 .hero-text p {
-  max-width: 300px;
-  margin-bottom: 30px;
+  max-width: 400px;
+  font-size: 16px;
+  text-align: center;
+  margin: 0 auto ; /* This centers the paragraph and adds margin */
+  line-height: 1.5; /* Improves readability */
+}
+
+.hero-map {
+  /* CSS Specifics */
+  flex: 1;
+  overflow: hidden; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+
+  /* Margin and Padding */
+  margin: 10px; 
+  padding: 10px;
+  padding-right: 20px;
+  
+  margin-bottom: 20px;
+  margin-right: 30px;
+
+  /* Border */
+  background-color: var(--pink-bg);
+  border-radius: 20px;
+
+  /* Dimensions */
+  min-height: 380px;
+  height: 400px;
+
+
+
+}
+
+/* Dropdown styling and spacing */
+.borough-filter {
+  margin-bottom: 12px;
+  font-family: 'DM Sans', sans-serif;
   font-size: 16px;
 }
 
-.hero-image {
-  flex: 1;
-  background-color: var(--pink-bg);
-  border-radius: 20px;
-  min-height: 320px;
-  /* You would add your hero product image here */
-}
-
+/* Make the map responsive */
 
 @media (max-width: 1000px) {
   .hero-section {
@@ -130,20 +177,154 @@ body {
   .nav-links {
     display: none;
   }
+
+  .footer-links{
+    display: none;
+  }
 }
 
+/* Content Section --------------- */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--green-bg);
+  padding-bottom: 10%;
+}
 
-.hero-map {
-  flex: 1;
+/* Accenting --------------- */
+
+/* Cafe Cards */
+.favorite-badge {
+  position: absolute;
+  top: -15px;
+  right: -35px;
   background-color: var(--pink-bg);
-  border-radius: 20px;
-  min-height: 380px;
-  overflow: hidden;
-  position: relative;
+  color: var(--black);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 50%;
+  transform: rotate(10deg);
 }
 
 /* Styling for the cafe cards */
+
+.cafe-showcase {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly; /* Even distribution across the line */
+  margin-top: 20px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px; /* Limit max width */
+  margin-left: auto;
+  margin-right: auto;}
+
 .cafe-card {
+  flex: 1; /* Equal width distribution */
+  max-width: 500px; /* Limit max width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* Reduced padding */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  /* Glowing border for the card */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.2),
+    0 0 30px rgba(168, 188, 135, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.cafe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(168, 188, 135, 0.5),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.cafe-image {
+  width: 200px; /* Reduced from 180px */
+  height: 270px; /* Reduced from 240px */
+  margin-bottom: 15px; /* Reduced margin */
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  border-radius: 12px;
+  background-color: #e6f2e1;
+  /* Glowing border for the image */
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(168, 188, 135, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cafe-image:hover {
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.5),
+    0 0 60px rgba(168, 188, 135, 0.6);
+}
+
+.cafe-name {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--black); 
+  /* change color and font */
+  text-align: center;
+  min-height: 50px; /* Ensures consistent spacing even with different name lengths */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-display {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.google-rating, .personal-rating {
+  padding: 5px 0;
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.view-details {
+  width: 60%;
+  background-color: var(--black);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto; /* This pushes the button to the bottom of the card */
+}
+
+.view-details:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.cafe-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* .cafe-card {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -163,17 +344,8 @@ body {
   background-color: #e6f2e1;
 }
 
-.favorite-badge {
-  position: absolute;
-  top: -15px;
-  right: -35px;
-  background-color: var(--pink-bg);
-  color: var(--black);
-  font-size: 12px;
-  font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 50%;
-  transform: rotate(10deg);
+.cafe-name {
+  margin-bottom: 10px;
 }
 
 .rating-display {
@@ -184,46 +356,45 @@ body {
 .google-rating, .personal-rating {
   padding: 5px 0;
   font-size: 15px;
-}
-
-.view-details {
-  width: 50%;
-  background-color: var(--black);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.view-details:hover {
-  transform: scale(1.05);
-}
-
-/* Make the map responsive */
+} */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .hero-map {
-    height: 300px;
-    margin-top: 20px;
+  .cafe-showcase {
+    gap: 20px;
+  }
+  
+  .cafe-card {
+    flex: 0 1 250px;
+    padding: 20px;
+  }
+  
+  .cafe-image {
+    width: 150px;
+    height: 200px;
   }
 }
 
+
+
+
 /* Text Banner */
 .scrolling-banner-wrapper {
-  width: 100%;
+  width: 120%;
   overflow: hidden;
   white-space: nowrap;
   background-color: var(--offwhite-bg);
-  padding: 8px;
-  border-radius: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: #000000;
+  border-width: 10px;
+  /* border-radius: 20px; */
 }
 
 .scrolling-banner {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll-left 10s linear infinite;
+  animation: scroll-left 40s linear infinite;
+  border:#000000;
 }
 
 .scrolling-banner span {
