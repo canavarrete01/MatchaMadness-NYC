@@ -131,42 +131,49 @@ footer {
   margin: 0 auto ; /* This centers the paragraph and adds margin */
   line-height: 1.5; /* Improves readability */
 }
-
 .hero-map {
-  /* CSS Specifics */
   flex: 1;
-  overflow: hidden; 
-  display: flex; 
-  justify-content: center;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;  /* ⬅️ key change: stack vertically */
+  justify-content: flex-start;
   align-items: center;
 
-  /* Margin and Padding */
-  margin: 10px; 
-  padding: 10px;
+  /* margin: 10px;
+  padding: 20px;
   padding-right: 20px;
-  
-  margin-bottom: 20px;
-  margin-right: 30px;
+  margin-right: 30px; */
 
-  /* Border */
-  background-color: var(--pink-bg);
+  /* background-color: var(--pink-bg); */
   border-radius: 20px;
 
-  /* Dimensions */
   min-height: 380px;
   height: 400px;
-
-
-
+  width: 90%; 
 }
 
 /* Dropdown styling and spacing */
 .borough-filter {
-  margin-bottom: 12px;
+  margin-bottom: 12px; /* ⬅️ spacing between dropdown and map */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
+  padding: 2px;
+  border: 1px solid var(--pink-bg);
+  box-shadow: 0 0 5px rgba(52, 52, 52, 0.333);
+  border-radius: 10px;
+  background-color: var(--pink-bg);
+  color: var(--black);
+  width: 300px; 
+  height: 40px;
 }
 
+label.borough-label {
+  font-weight: 300;
+  padding: 10px
+}
 /* Make the map responsive */
 
 @media (max-width: 1000px) {

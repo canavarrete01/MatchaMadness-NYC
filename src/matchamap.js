@@ -155,8 +155,9 @@ const MatchaMap = () => {
       {/* Borough filter */}
       {/* Change css for this, change drop down menu and font and color */}
       <div className="borough-filter">
-        <label htmlFor="borough-select">Filter by Borough: </label>
+        <label htmlFor="borough-select" className = "borough-label" >Filter by Borough:  </label>
         <select 
+          className="borough-select"
           id="borough-select" 
           value={selectedBorough} 
           onChange={(e) => setSelectedBorough(e.target.value)}
