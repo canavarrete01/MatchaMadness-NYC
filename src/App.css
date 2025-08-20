@@ -257,15 +257,15 @@ label.borough-label {
 }
 
 .cafe-image {
-  width: 200px; /* Reduced from 180px */
-  height: 270px; /* Reduced from 240px */
-  margin-bottom: 15px; /* Reduced margin */
+  width: 200px;
+  height: 200px; 
+  margin-bottom: 15px; 
   position: relative;
   background-position: center;
   background-size: cover;
   border-radius: 12px;
   background-color: #e6f2e1;
-  /* Glowing border for the image */
+
   border: 3px solid rgba(255, 255, 255, 0.4);
   box-shadow: 
     0 0 20px rgba(255, 255, 255, 0.3),
@@ -330,6 +330,26 @@ label.borough-label {
   justify-content: center;
   margin-top: 20px;
 }
+
+
+/* MATCHA MAP CSS */
+.directory {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; */
+  background-color: var(--green-bg);
+  /* padding-bottom: 10%; */
+}
+
+.directory-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 
 /* .cafe-card {
   flex: 1;

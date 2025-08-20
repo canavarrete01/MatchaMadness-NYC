@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import MatchaMap from '../matchamap'; // google map component
 // import CafeReviews from './CafeReviews';
-// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function Home() {
      // Test API Integration

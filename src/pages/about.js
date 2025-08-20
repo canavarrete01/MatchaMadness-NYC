@@ -35,9 +35,19 @@ function About() {
         textAlign: 'center'
       }}>
         <p style={{ margin: '0', fontSize: '16px', color: '#2d5016' }}>
-          🍵 Happy matcha hunting! 🍵
+          🍵 Happy matcha hunting and happy sipping! 🍵
         </p>
       </div>
+
+      {/* Developer Notes and How its Made */}
+
+      <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>How It's Made</h2>
+      <p style={{ lineHeight: '1.6', marginBottom: '20px' }}>
+        This website is built using React and Node.js, with its backend powered by MongoDB and Google Maps API for location services.
+        This project was a labor of love, with the idea, design, and development all done by me in my free time after working full time as a data specialist.
+        I always seek to learn new tech and wanted to build a personal project that felt fun to me as well as useful to my everyday. 
+      </p>
+      
     </div>
   );
 }

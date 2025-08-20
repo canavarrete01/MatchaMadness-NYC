@@ -7,8 +7,6 @@ import Rankings from "./pages/reviews";
 import Home from "./pages/home";
 
 function App() {
-  // Move your API logic to the pages that actually need it
-  // Or pass it as props to child components that need the data
   
   return (
     <div className="App">
