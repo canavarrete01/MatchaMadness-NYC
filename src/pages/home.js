@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import MatchaMap from '../matchamap'; // google map component
+import MatchaMap from '../components/matchamap'; // google map component
 // import CafeReviews from './CafeReviews';
 
 function Home() {
