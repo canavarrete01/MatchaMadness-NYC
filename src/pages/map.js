@@ -1,6 +1,7 @@
 // pages/map.js
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import '../css/map.css'
 import MatchaMapExpanded from '../components/matchamap-expanded';
 
 function Map() {
@@ -9,7 +10,7 @@ function Map() {
   const [error, setError] = useState(null);
   const [selectedCafe, setSelectedCafe] = useState(null);
   const [selectedBorough, setSelectedBorough] = useState('All');
-  const [searchTerm, setSearchTerm] = useState(''); // <-- Add this
+  const [searchTerm, setSearchTerm] = useState(''); 
 
   useEffect(() => {
     const fetchCafes = async () => {
@@ -63,35 +64,10 @@ function Map() {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 4fr',
-        gridTemplateRows: '1fr 1fr',
-        gap: '32px 0',
-        height: 'calc(100vh - 60px)',
-        padding: '40px',
-        background: '#faf8ee',
-        boxSizing: 'border-box'
-      }}
-    >
+    <div className="map-page">
       {/* Sidebar - vertically centered */}
       <div
         className="directory"
-        style={{
-          gridRow: '1 / span 2',
-          gridColumn: '1 / 2',
-          alignSelf: 'stretch',
-          justifySelf: 'center',
-          width: '100%',
-          height: '100%',
-          overflowY: 'auto',
-          borderRadius: '18px',
-          background: '#f6f6f6',
-          boxShadow: '0 1px 8px rgba(44,204,64,0.07)',
-          padding: '20px',
-          border: '2px solid #a8bc87'
-        }}
       >
         <h2 className="directory-title">Matcha Cafes</h2>
         <div style={{ marginBottom: '16px' }}>
@@ -113,6 +89,7 @@ function Map() {
             <option value="Staten Island">Staten Island</option>
           </select>
         </div>
+
         {/* Search input (name only) */}
         <div style={{ marginBottom: '16px' }}>
           <input
@@ -129,10 +106,11 @@ function Map() {
             }}
           />
         </div>
+
         <div className="cafe-list">
           {displayedCafes.map(cafe => (
             <div
-              key={cafe.id}
+              key={cafe.id}d
               className="cafe-card"
               style={{
                 marginBottom: '20px',
@@ -162,66 +140,42 @@ function Map() {
         </div>
       </div>
 
+      {/* Right Column */}
+      <div className="map-reviews-container">
       {/* Map - top right, horizontally centered */}
-      <div
-        style={{
-          gridRow: '1 / 2',
-          gridColumn: '2 / 3',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <div style={{
-          width: '700px', // Set a fixed width for consistency
-          height: '400px',
-          borderRadius: '18px',
-          overflow: 'scroll',
-          boxShadow: '0 1px 8px rgba(44,204,64,0.07)',
-          marginBottom: '20px',
-        }}>
+      <div className="map">
           <MatchaMapExpanded
             cafes={filteredCafes}
             selectedCafe={selectedCafe}
             setSelectedCafe={setSelectedCafe}
             selectedBorough={selectedBorough}
           />
-        </div>
       </div>
 
       {/* Reviews - bottom right, horizontally centered */}
-      <div
-        style={{
-          gridRow: '2 / 3',
-          gridColumn: '2 / 3',
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          overflow: 'scroll',
-          padding: '10px',
-          height: '100%', // fills grid row height
-          boxSizing: 'border-box'
-        }}
-      >
-        {selectedCafe && selectedCafe.reviews && selectedCafe.reviews.length > 0 && (
-          <div style={{
-            width: '650px', // Match the map width
-            marginTop: '0',
-            padding: '20px',
-            borderRadius: '12px',
-            border: '2px solid #a8bc87',
-            boxShadow: '0 1px 6px rgba(201, 250, 207, 0.08)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            margin: '10px',
+      <div className="reviews">
 
-          }}>
-            <h3 style={{ marginBottom: '12px', textAlign: 'center' }}>Reviews for {selectedCafe.name}</h3>
-            <ReviewList reviews={selectedCafe.reviews} />
+        {!selectedCafe ? (
+          <div style={{ textAlign: 'center', color: '#363636ff', fontStyle: 'italic' }}>
+            Click on a cafe to see its reviews!
           </div>
+        ) : (
+          selectedCafe.reviews && selectedCafe.reviews.length > 0 ? (
+            <div>
+              <h3 style={{ marginBottom: '12px', textAlign: 'center' }}>Reviews for {selectedCafe.name}</h3>
+              <ReviewList reviews={selectedCafe.reviews} />
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', color: '#888', fontSize: '1.1em', marginTop: '40px' }}>
+              No reviews available for this cafe.
+            </div>
+          )
         )}
+
       </div>
+      {/* End of Map + Review Container */}
+    </div>
+    {/* End of Page Container */}
     </div>
   );
 }
@@ -234,21 +188,18 @@ function ReviewList({ reviews }) {
     .slice(0, 5); // Top 5
 
   return (
-    <div style={{
-      maxHeight: '300px',
-      overflowY: 'auto',
-      paddingRight: '8px'
-    }}>
+    <div>
       {matchaReviews.length === 0 ? (
         <div>Sorry, no reviews mentioning "matcha" found!</div>
       ) : (
         matchaReviews.map((review, idx) => (
           <div key={idx} style={{
+            width: '100%',
             marginBottom: '18px',
             padding: '12px',
             borderRadius: '8px',
             background: '#fff',
-            boxShadow: '0 1px 4px rgba(44,204,64,0.07)'
+          
           }}>
             <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               {review.author_name} &mdash; <span style={{ color: '#2ecc40' }}>★ {review.rating}</span>
