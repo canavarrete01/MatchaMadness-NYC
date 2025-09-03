@@ -7,40 +7,30 @@ function About() {
       <h1 style={{ color: '#2d5016', marginBottom: '20px' }}>About Matcha Madness NYC</h1>
       
       <p style={{ fontSize: '18px', lineHeight: '1.6', marginBottom: '20px' }}>
-        Welcome to Matcha Madness NYC, your ultimate guide to the best matcha spots 
-        in the Big Apple! We're passionate about helping you discover amazing matcha 
-        experiences throughout New York City.
+        Welcome to Matcha Madness NYC, a guide to find your next favorite matcha cafe in New York City.
+        Matcha Madness NYC began as a passion project to find and share the best matcha spots in the city. 
+        Through this website, I hope to share the love for the drink and help others find their perfect matcha, no matter what borough.
+        Have fun exploring Matcha Madness NYC and happy sipping!
       </p>
-      
-      <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>Our Mission</h2>
+
+      <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>About the Creator</h2>
       <p style={{ lineHeight: '1.6', marginBottom: '20px' }}>
-        To connect matcha lovers with the finest tea shops, cafes, and hidden gems 
-        across NYC. Whether you're craving a traditional ceremonial matcha or a 
-        trendy matcha latte, we've got you covered.
+        Hi! I'm Carolina Navarrete, a certfied matcha obssessed tech nerd based in New York City. 
+        I am a matcha latte aficionado who recently moved to NYC and quickly became enamored with the city's plethora of matcha cafes to choose from. 
+        Having kept a running notes app list on my phone, I thought there must be a more efficient way to share my love for the drink with friends. What better way to combine wanting share my favorite cafes with friends + my love for website design than to build an excessively complicated website?
+        <br /><br />
+        Find more information about me on my linkedin (<a href="https://www.linkedin.com/in/carolina-navarrete-a764b3285/" target="_blank" rel="noopener noreferrer">here</a>) ) and my website portfolio (<a href="https://canavarrete01.github.io/" target="_blank" rel="noopener noreferrer">here</a>) which I also built!
       </p>
       
-      <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>What We Offer</h2>
+      <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>What's Available</h2>
       <ul style={{ lineHeight: '1.8', paddingLeft: '20px' }}>
         <li>Interactive map of matcha locations</li>
-        <li>Rankings and reviews of the best spots</li>
+        <li>Rankings and reviews of the highest rated matcha cafes</li>
         <li>Personal favorites and recommendations</li>
-        <li>Up-to-date information on new openings</li>
       </ul>
-      
-      <div style={{ 
-        marginTop: '40px', 
-        padding: '20px', 
-        backgroundColor: '#f0f8e8', 
-        borderRadius: '8px',
-        textAlign: 'center'
-      }}>
-        <p style={{ margin: '0', fontSize: '16px', color: '#2d5016' }}>
-          🍵 Happy matcha hunting and happy sipping! 🍵
-        </p>
-      </div>
+    
 
       {/* Developer Notes and How its Made */}
-
       <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>How It's Made</h2>
       <p style={{ lineHeight: '1.6', marginBottom: '20px' }}>
         This website is built using React and Node.js, with its backend powered by MongoDB and Google Maps API for location services.
