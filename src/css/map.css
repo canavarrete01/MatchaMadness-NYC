@@ -19,7 +19,7 @@
     flex-direction: column;
     padding: 20px;
     background: #f6f6f6;
-    #border: 2px solid #a8bc87;
+    border: 2px solid #a8bc87;
     border-radius: 20px;
     height: 100%;
     overflow-y: auto;
