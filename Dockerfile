@@ -14,6 +14,7 @@ WORKDIR /app
 # CMD ["npm", "start"]
 
 ### GCLOUD optimized deployment ---
+
 # Copy package files
 COPY package*.json ./
 
@@ -22,6 +23,10 @@ RUN npm install
 
 # Copy source code
 COPY . .
+COPY .env .env
+
+# Set environment variables for React build
+ENV REACT_APP_API_URL=https://mm-backend-568346835986.us-east1.run.app
 
 # Build the React app for production
 RUN npm run build

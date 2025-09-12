@@ -55,5 +55,3 @@ function App() {
 }
 
 export default App;
-// Updates to add:  fix map layout for mobile, adjust photo for nana's, add more detailed footer, adjust nav link button
-// remove all unnecessary files from the github for organization 

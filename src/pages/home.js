@@ -44,7 +44,14 @@ function Home() {
       try {
         setLoading(true);
         const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
+        // Add these debug lines temporarily:
+        console.log('Environment:', process.env.NODE_ENV);
+        console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+        console.log('Final API_BASE_URL:', API_BASE_URL);
+        
         const response = await fetch(`${API_BASE_URL}/api/places`);
+       
       
         
         if (!response.ok) {
