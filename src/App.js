@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from "./pages/about";
@@ -7,6 +7,7 @@ import Rankings from "./pages/reviews";
 import Home from "./pages/home";
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
   
   return (
     <div className="App">
@@ -14,11 +15,22 @@ function App() {
         {/* Navigation Bar - shows on all pages */}
         <nav className="navbar">
           <div className="title-logo">Matcha Madness NYC</div>
-          <div className="nav-links">
-            <Link to="/">HOME</Link>
-            <Link to="/map">MAP</Link>
-            <Link to="/rankings">RANKINGS</Link>
-            <Link to="/about">ABOUT</Link>
+          <button
+            className={`menu-toggle ${menuOpen ? 'is-open' : ''}`}
+            aria-expanded={menuOpen}
+            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+            type="button"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <div className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>HOME</Link>
+            <Link to="/map" onClick={() => setMenuOpen(false)}>MAP</Link>
+            <Link to="/rankings" onClick={() => setMenuOpen(false)}>RANKINGS</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>ABOUT</Link>
           </div>
           <div className="favorites-icon">🍵</div>
         </nav>
