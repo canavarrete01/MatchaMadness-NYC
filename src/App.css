@@ -130,7 +130,17 @@ footer {
    font-size: 20px;
    font-weight: 600;
    /* font-style: italic; */
+   color: var(--black);
+   text-decoration: none;
+   display: inline-block;
  }
+
+.title-logo:visited,
+.title-logo:hover,
+.title-logo:active {
+  color: var(--black);
+  text-decoration: none;
+}
 
 /* Footer CSS */
 .footer-links {

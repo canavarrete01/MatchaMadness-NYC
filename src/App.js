@@ -14,7 +14,10 @@ function App() {
       <Router>
         {/* Navigation Bar - shows on all pages */}
         <nav className="navbar">
-          <div className="title-logo">Matcha Madness NYC</div>
+
+          <Link to="/" className="title-logo" onClick={() => setMenuOpen(false)}>
+            Matcha Madness NYC
+          </Link>
           <button
             className={`menu-toggle ${menuOpen ? 'is-open' : ''}`}
             aria-expanded={menuOpen}

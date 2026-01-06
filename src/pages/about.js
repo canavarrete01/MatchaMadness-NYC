@@ -22,8 +22,8 @@ function About() {
 
       <h2 style={{ color: '#2d5016', marginTop: '30px', marginBottom: '15px' }}>About the Creator</h2>
       <p style={{ lineHeight: '1.6', marginBottom: '20px' }}>
-        Hi! I'm Carolina Navarrete, a certfied matcha obssessed tech nerd based in New York City. 
-        I am a matcha latte aficionado who recently moved to NYC and quickly became enamored with the city's plethora of matcha cafes to choose from. 
+        Hi! I'm Carolina Navarrete, a matcha obssessed tech nerd based in New York City. 
+        After moving to NYC in 2024, I quickly became enamored with the city's plethora of matcha cafes to choose from. 
         Having kept a running notes app list on my phone, I thought there must be a more efficient way to share my love for the drink with friends. What better way to combine wanting share my favorite cafes with friends + my love for website design than to build an excessively complicated website?
         This project was a labor of love, with the idea, design, and development all done by me in my free time after working full time as a data specialist.
         <br /><br />
