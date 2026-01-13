@@ -32,8 +32,11 @@ function Rankings() {
 
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+       {/* <div className="hero-text centered">
+          <h2 className="hero-text">RANKINGS</h2>
+          </div> */}
       <h1>Top Rated Matcha Cafes</h1>
-      <div style={{ marginBottom: '16px', display: 'flex', gap: '24px', alignItems: 'center' }}>
+      <div style={{ marginBottom: '16px', gap: '24px', alignItems: 'center' , display: 'flex', justifyContent: 'center' }}>
         <div>
           <label htmlFor="borough-select">Borough: </label>
           <select
@@ -66,15 +69,34 @@ function Rankings() {
         <p>No cafes found for this selection.</p>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
-          {filteredCafes.map(cafe => (
+          {filteredCafes.map((cafe, index) => (
             <li key={cafe._id} style={{
               marginBottom: '18px',
               padding: '16px',
               borderRadius: '10px',
               background: '#fdfff7ff',
-              boxShadow: '0 1px 4px rgba(44,204,64,0.07)'
+              boxShadow: '0 1px 4px rgba(44,204,64,0.07)',
+              position: 'relative'
             }}>
-              <h3 style={{ margin: 0 }}>{cafe.name}</h3>
+              {index < 3 && (
+                <img 
+                  src={`/icons/star-${index + 1}.svg`} 
+                  alt={`Top ${index + 1}`}
+                  style={{ 
+                    width: '40px', 
+                    height: '40px',
+                    position: 'absolute',
+                    top: '-10px',
+                    left: '5px',
+                    transform: 'rotate(-15deg)',
+                    filter: 'drop-shadow(2px 2px 1px rgba(0,0,0,0.2))',
+                    zIndex: 10
+                  }}
+                />
+              )}
+              <h3 style={{ margin: 0 }}>
+                {cafe.name}
+              </h3>
               <div>★ {cafe.rating} ({cafe.user_ratings_total} reviews)</div>
               <div>{cafe.formatted_address}</div>
               <div>Borough: {cafe.borough}</div>
@@ -94,3 +116,10 @@ function Rankings() {
 }
 
 export default Rankings;
+
+// Ideas for improvement:
+// - Add pagination for long lists
+// - highlight the top three
+// - add an icon to the top three (like a medal or star)
+// - put in a more table like format
+// - use consistent headers from hero page style sheet, scale down a bit
