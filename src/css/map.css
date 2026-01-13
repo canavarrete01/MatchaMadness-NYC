@@ -1,3 +1,4 @@
+/* Map CSS */
 .map-page{
     display: flex;
     flex-direction: row;
@@ -5,7 +6,7 @@
     height: 80vh;
     /* background: #fdfdfd; */
     border-radius: 20px;
-    border: 3px solid #a8bc87;
+    /* border: 3px solid #a8bc87; */
     box-sizing: border-box;
     overflow: scroll;
     margin: 0 auto;
@@ -13,6 +14,40 @@
     margin-bottom: 1%;
 }
 
+.map {
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin: 0 auto 2% auto;    
+}
+
+.map-reviews-container {
+    flex: 3.5; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Reviews Section CSS */
+.reviews {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid #a8bc87;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(201, 250, 207, 0.08);
+    overflow-y: auto;
+    max-height: 400px;
+    margin: 0 auto;
+
+}
+
+/* Directory CSS */
 .directory{
     flex: 1.5;
     display: flex;
@@ -25,34 +60,7 @@
     overflow-y: auto;
 }
 
-.map-reviews-container {
-    flex: 3.5; 
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.map {
-    width: 100%;
-    display: flex;
-    position: relative;
-    margin: 0 auto 2% auto;    
-}
-
-.reviews {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background: #fff;
-    border: 2px solid #a8bc87;
-    border-radius: 12px;
-    box-shadow: 0 1px 6px rgba(201, 250, 207, 0.08);
-    overflow-y: auto;
-    max-height: 400px;
-    margin: 0 auto;
-
+.card {
+    height: 100px;
 }
 

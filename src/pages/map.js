@@ -107,13 +107,13 @@ function Map() {
           />
         </div>
 
-        <div className="cafe-list">
+        <div>
           {displayedCafes.map(cafe => (
             <div
+              // className="card"
               key={cafe.id}d
-              className="cafe-card"
               style={{
-                marginBottom: '20px',
+                marginBottom: '15px',
                 padding: '10px',
                 background: selectedCafe && selectedCafe.id === cafe.id ? '#B5C99A' : '#fff',
                 borderRadius: '8px',
@@ -125,11 +125,11 @@ function Map() {
               }}
               onClick={() => setSelectedCafe(cafe)}
             >
-              <h3 className="cafe-name">{cafe.name}</h3>
-              <p className="cafe-address">{cafe.address}</p>
-              <p className="cafe-rating">Rating: {cafe.rating} ({cafe.user_ratings_total} reviews)</p>
+              <h2 >{cafe.name}</h2>
+              <p>{cafe.address}</p>
+              <p>Rating: {cafe.rating} ({cafe.user_ratings_total} reviews)</p>
               {cafe.website && (
-                <p className="cafe-website">
+                <p>
                   <a href={cafe.website} target="_blank" rel="noopener noreferrer">
                     Visit Website
                   </a>
